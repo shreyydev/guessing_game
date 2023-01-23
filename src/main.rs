@@ -39,8 +39,8 @@ fn get_difficulity() -> u32 {
 fn get_secret_number(diffculity_selected: &u32) -> u32 {
     let secret_number: u32 = match diffculity_selected {
         1 => rand::thread_rng().gen_range(1, 101),
-        2 => rand::thread_rng().gen_range(1, 201),
-        3 => rand::thread_rng().gen_range(1, 301),
+        2 => rand::thread_rng().gen_range(1, 251),
+        3 => rand::thread_rng().gen_range(1, 501),
         _ => panic!("Difficulity does not exist"),
     };
     return secret_number;
