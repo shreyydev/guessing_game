@@ -59,7 +59,6 @@ fn game_loop(secret_number: &u32) {
             .expect("Failed to read line");
 
         guess_count = guess_count + 1;
-        println!("Time elapsed: {}secs", sw.elapsed_ms() / 1000);
 
         let guess: u32 = match guess.trim().parse() {
             Ok(num) => num,
@@ -67,15 +66,30 @@ fn game_loop(secret_number: &u32) {
         };
 
         match guess.cmp(&secret_number) {
-            Ordering::Less => println!("Too small!"),
-            Ordering::Greater => println!("Too big!"),
+            Ordering::Less => {
+                if secret_number - guess < 10 {
+                    println!("a little higher");
+                } else {
+                    println!("Too small!");
+                }
+            }
+            Ordering::Greater => {
+                if guess - secret_number < 10 {
+                    println!("a little smaller");
+                } else {
+                    println!("Too big!");
+                }
+            }
             Ordering::Equal => {
                 sw.stop();
-                println!("Yay! you guessed it.");
+                println!("Yay! you guessed it.\n");
                 break;
             }
         }
     }
+
+    println!("Time taken: {} secs", sw.elapsed_ms() / 1000);
+    println!("Tries used: {}", guess_count);
     println!(
         "Your score is {}",
         get_score(&sw.elapsed_ms(), &guess_count)
