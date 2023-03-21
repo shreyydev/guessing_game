@@ -16,7 +16,7 @@ Difficulity increases the scope of the number you need to guess.
 
 ## Score
 
-> score = time taken to complete (secs) X count of guesses taken to complete
+Score = (time taken to complete in secs) X (count of guesses taken to complete)
 
 ## Compile/Run
 
